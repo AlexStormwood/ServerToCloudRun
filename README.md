@@ -29,8 +29,11 @@ This will trigger the workflow & it will fail, but that's a good thing! We still
 
 7. Create & download a key for that service account. Make sure it's a JSON file!
 
+8. Enable billing in your Google Cloud project. Yes, this may require an actual credit card. I think you may get some free credits for 12 months, but it's been years since I was a new GCP user so I'm not actually sure.
 
-8. Set up some repository secret variables based on the key.
+9. Go to the Container Registry area and enable the Container Registry API. This allows our workflow & other code to call the system.
+
+9. Set up some repository secret variables based on the key.
 https://github.com/{YourGithubUsernameHere}/{YourRepoNameHere}/settings/secrets/actions
 
 Your repo needs these keys:
@@ -40,5 +43,5 @@ Your repo needs these keys:
 
 - A key named GCP_SA_KEY with the value of the contents of that JSON key file you made in the previous numbered step. Open the JSON file in your favourite text editor, select everything, copy it, and paste it in as the value.
 
-9. Re-run the workflow from the repository's web browser interface, or just make a minor change & commit it back up to Github to trigger the workflow.
+10. Re-run the workflow from the repository's web browser interface, or just make a minor change & commit it back up to Github to trigger the workflow.
 
