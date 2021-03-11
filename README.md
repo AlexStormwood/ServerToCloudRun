@@ -21,3 +21,24 @@ Make sure you build & run your Docker image locally to confirm your app works.
 This will trigger the workflow & it will fail, but that's a good thing! We still need to add all sorts of credentials & do some other Google Cloud Platform setup.
 
 
+5. Create a project on Google Cloud Platform.
+
+
+6. Create a service account for your new GCP project.
+
+
+7. Create & download a key for that service account. Make sure it's a JSON file!
+
+
+8. Set up some repository secret variables based on the key.
+https://github.com/{YourGithubUsernameHere}/{YourRepoNameHere}/settings/secrets/actions
+
+Your repo needs these keys:
+
+- A key named GCP_PROJECT with value of your project ID. For example, this demo project's ID is "expressjsdockerdeploydemo2021". Find your project ID in the project dashboard, on a page like this:
+
+
+- A key named GCP_SA_KEY with the value of the contents of that JSON key file you made in the previous numbered step. Open the JSON file in your favourite text editor, select everything, copy it, and paste it in as the value.
+
+9. Re-run the workflow from the repository's web browser interface, or just make a minor change & commit it back up to Github to trigger the workflow.
+

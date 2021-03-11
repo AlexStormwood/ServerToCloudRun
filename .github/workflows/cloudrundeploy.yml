@@ -1,14 +1,14 @@
 name: CICD
 
 on:
-   push:
-    branches: [ master, main ]
+  push:
+    branches: [ main ]
   pull_request:
-    branches: [ master, main ]
+    branches: [ main ]
 
 env:
-  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
-  IMAGE: bigfootds-api-img
+  PROJECT_ID: ${{ secrets.GCP_PROJECT }}
+  IMAGE: example-docker-image-name
 
 jobs:
   setup-build-publish-deploy:
@@ -23,8 +23,8 @@ jobs:
     - uses: google-github-actions/setup-gcloud@master
       with:
         version: '290.0.1'
-        service_account_key: ${{ secrets.GKE_SA_KEY }}
-        project_id: ${{ secrets.GKE_PROJECT }}
+        service_account_key: ${{ secrets.GCP_SA_KEY }}
+        project_id: ${{ secrets.GCP_PROJECT }}
 
     # Configure Docker to use the gcloud command-line tool as a credential
     # helper for authentication
@@ -46,7 +46,7 @@ jobs:
 
     - name: Push to Cloud run
       run: |-
-        gcloud run deploy bigfootds-api-service --image gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA --platform managed --region us-central1
+        gcloud run deploy example-api-service --image gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA --platform managed --region us-central1
       # The service is created if it does not exist, otherwise it's just updated
       # If it doesn't exist and you want it to be a public-accessible API, you must
       # edit the service in the Google Cloud Run dashboard after the first run to enable no-auth access
